@@ -1,0 +1,32 @@
+# ── 构建产物（可随时重新构建）──
+target/
+node_modules/
+dist/
+
+# ── 渲染 / 预览临时文件 ──
+.preview/
+.tmp/
+.sharp/
+.survey/
+.survey_final.png
+.cmp/
+.v1shots*/
+.v1final/
+*.beatcache
+*.log
+*.tsbuildinfo
+
+# ── Python ──
+__pycache__/
+*.pyc
+
+# ── 便携工具（体积大，不入库：ffmpeg 等另行下载）──
+**/tools/ffmpeg/
+
+# ── 会话状态 / 编辑器 / 系统 ──
+.workbuddy/
+.vscode/
+.idea/
+*.user
+Thumbs.db
+.DS_Store

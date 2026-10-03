@@ -1,0 +1,23 @@
+# 行尾规范化：文本文件统一 LF，媒体/帧数据保持二进制
+* text=auto
+*.sh   text eol=lf
+*.py   text
+*.rs   text
+*.toml text
+*.md   text
+*.lrc  text
+*.txt  text
+*.json text
+*.yml  text
+*.html text
+*.css  text
+*.ts   text
+*.tsx  text
+
+*.png  binary
+*.jpg  binary
+*.ico  binary
+*.bin  binary
+*.mp4  binary
+*.mp3  binary
+*.wav  binary

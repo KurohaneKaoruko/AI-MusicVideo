@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>NotToNotice(); — MV renderer v2</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #06070b; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  /* Fit the viewport while keeping 16:9. The canvas is authored at 1920x1080;
+     showing it in a fixed 960x540 box meant the browser halved it, which reads
+     as "blurry" on 1px terminal type even though the render itself is sharp.
+     On a large display this is now 1:1. */
+  #wrap { position: relative; width: min(100vw, 177.78vh); aspect-ratio: 16 / 9;
+          box-shadow: 0 0 60px #000 inset; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #err {
+    position: fixed; left: 0; top: 0; right: 0; max-height: 60vh; overflow: auto;
+    font: 12px/1.5 Consolas, monospace; color: #ff8080; background: #160608ee;
+    padding: 10px 14px; white-space: pre-wrap; z-index: 99; display: none;
+  }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="c" width="1920" height="1080"></canvas></div>
+<pre id="err"></pre>
+<script>
+  window.__errors = [];
+  const show = (msg) => {
+    window.__errors.push(String(msg));
+    const e = document.getElementById("err");
+    e.style.display = "block";
+    e.textContent = window.__errors.join("\n\n");
+  };
+  window.addEventListener("error", (ev) => {
+    show((ev.message || "error") + "\n" + (ev.filename || "") + ":" + (ev.lineno || 0) +
+         (ev.error && ev.error.stack ? "\n" + ev.error.stack : ""));
+  });
+  window.addEventListener("unhandledrejection", (ev) => {
+    show("unhandled rejection: " + (ev.reason && ev.reason.stack ? ev.reason.stack : ev.reason));
+  });
+</script>
+<script type="module">
+  import * as main from "./src/main.js";
+  window.__boot().then((info) => { window.__info = info; })
+    .catch((e) => { window.__bootError = String(e && e.stack || e); });
+</script>
+</body>
+</html>
