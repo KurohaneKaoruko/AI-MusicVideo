@@ -14,7 +14,7 @@ AI-MusicVideo/
 │   └── mv_verify.py       成片校验脚本（探测流信息 + 抽帧）
 └── projects/              作品目录（每个作品一个子目录）
     ├── NotToNotice()/     作品：NotToNotice (Enoa)，v1 Rust / v2 / v3 Remotion
-    ├── world.execute(me)/ 作品：world.execute(me); (Mili)，Rust，维护期
+    ├── world.execute(me)/ 作品：world.execute(me); (Mili)，v1 Rust（根目录）/ v2「SOURCE」Rust
     ├── world.search(you)/ 作品：world.search (you); (Mili)，v1 / v2 Rust
     └── ...                 新作品按相同约定新建目录
 ```
@@ -31,7 +31,9 @@ projects/<name>/
 └── dist/            成片输出（各版本最终 MP4 集中放在这里；体积大，不入库）
 ```
 
-- 单版本维护的作品（如 world.execute(me);）源码直接放在作品根目录，不设版本子目录。
+- 单版本维护的作品源码直接放在作品根目录，不设版本子目录；
+  多版本作品用 `v1/ v2/ v3/` 子目录（各版本自包含）。
+  `world.execute(me);` 较特殊：v1 源码在作品根目录，v2 起进入 `v2/` 子目录。
 - `dist/`、构建产物（`target/`、`node_modules/`）、预览缓存（`.preview/` 等）一律不入库，
   详见根目录 [.gitignore](.gitignore)。
 - 便携版 ffmpeg 不入库，渲染前自行放置（作品内 `tools/ffmpeg/` 或 `PATH` 均可）。

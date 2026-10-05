@@ -12,6 +12,9 @@ dist/
 .cmp/
 .v1shots*/
 .v1final/
+_dev/
+_check/
+_video/
 *.beatcache
 *.log
 *.tsbuildinfo
